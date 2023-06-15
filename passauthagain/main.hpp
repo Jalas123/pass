@@ -5,11 +5,15 @@
 
 #include <string>
 #include <tuple>
+bool emailexists(std::string email, std::string filename);
 void writeuserpass(std::string user, std::string pass);
+std::string askpass();
+int choicecreate();
 bool isEmailValid(const std::string& email);
 std::tuple<std::string, std::string> askEP();
 std::string askemail();
 int selectOption();
+void createUser(std::string name, int age);
 void writeemail(std::string email);
 std::tuple<std::string, int> askNA();
 class User {

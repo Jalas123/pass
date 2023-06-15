@@ -2,6 +2,8 @@
 #include <string>
 #include <tuple>
 #include <regex>
+#include <unordered_map>
+
 #include <fstream>
 #include "main.hpp"
 std::tuple<std::string, int> askNA(){
@@ -14,6 +16,28 @@ std::tuple<std::string, int> askNA(){
     return std::make_tuple(name, age);
 }
 
+bool emailexists(std::string email, std::string filename) {
+    std::ifstream file(filename);
+    if (file.is_open()) {
+        std::string line;
+        while (std::getline(file, line)) {
+            if (line == email) {
+                file.close();
+                return true;
+            }
+        }
+        file.close();
+    return false;    
+    } else {
+        std::cout << "failed to open file \n" << std::endl;
+    }
+
+}
+User::User(std::string name, int age) : name(name), age(age) {
+}
+void createUser(std::string name, int age){
+    User name(name, age);
+}
 std::string askemail(){
     std::cout << "enter your email\n";
     std::string email;
@@ -46,6 +70,15 @@ void writeuserpass(std::string user, std::string pass){
     outfile.open("userpass.txt", std::ios_base::app);
     outfile << user << ":" << pass << "\n";
     outfile.close();
+}
+std::string askpass(){
+    std::cout << "what is the password";
+};
+int choicecreate(){
+    std::cout << "If you would like to make an account, enter 1, if not press 0\n";
+    int num;
+    std::cin >> num;
+    return num;
 }
 
 void writeemail(std::string email){
